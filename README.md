@@ -130,20 +130,20 @@ BharatLCL follows a **3-tier architecture** with clear separation of concerns:
 
 | # | Name | Role | GitHub Handle |
 |---|------|------|---------------|
-| 1 | **Tanveer Kanderia** | Full-Stack Lead (Frontend-focused) | [@member1](https://github.com/member1) |
-| 2 | **Karan Morya** | Full-Stack Developer (Backend-focused) | [@member2](https://github.com/member2) |
+| 1 | **Tanveer Kanderia** | Full-Stack Lead (Frontend-focused) | [@Tanveer](https://github.com/Tanveer2311) |
+| 2 | **Karan Morya** | Full-Stack Developer (Backend-focused) | [@Karan](https://github.com/Karan-morya) |
 
 ### Module-Wise Breakdown
 
 | Module | Owner | Effort % | Key Files |
 |--------|-------|----------|-----------|
-| **UI/UX & Frontend Components** | Member 1 | 55% | `src/client/components/`, `src/client/pages/` |
-| **Dashboard & Analytics** | Member 1 | 50% | `src/client/pages/Dashboard.jsx`, `src/client/components/Analytics/` |
-| **Authentication & User Management** | Member 2 | 60% | `src/server/routes/auth.js`, `src/server/middleware/auth.js` |
-| **Capacity Discovery Engine** | Member 2 | 55% | `src/core/capacityEngine.js`, `src/server/routes/capacity.js` |
-| **ULIP Verification Integration** | Member 2 | 70% | `src/core/ulipVerification.js`, `src/server/services/ulip/` |
-| **Escrow Payment System** | Member 1 | 60% | `src/core/escrowPayment.js`, `src/server/routes/payments.js` |
-| **Automated Documentation Generator** | Member 1 | 65% | `src/core/documentGenerator.js`, `src/server/services/docs/` |
+| **UI/UX & Frontend Components** | Tanveer | 55% | `src/client/components/`, `src/client/pages/` |
+| **Dashboard & Analytics** | Tanveer | 50% | `src/client/pages/Dashboard.jsx`, `src/client/components/Analytics/` |
+| **Authentication & User Management** | Karan | 60% | `src/server/routes/auth.js`, `src/server/middleware/auth.js` |
+| **Capacity Discovery Engine** | Karan | 55% | `src/core/capacityEngine.js`, `src/server/routes/capacity.js` |
+| **ULIP Verification Integration** | Karan | 70% | `src/core/ulipVerification.js`, `src/server/services/ulip/` |
+| **Escrow Payment System** | Tanveer | 60% | `src/core/escrowPayment.js`, `src/server/routes/payments.js` |
+| **Automated Documentation Generator** | Tanveer | 65% | `src/core/documentGenerator.js`, `src/server/services/docs/` |
 | **Shipment Tracking** | Member 2 | 55% | `src/core/trackingService.js`, `src/server/routes/tracking.js` |
 | **Database Design & Models** | Member 2 | 60% | `src/server/models/` |
 | **Testing & CI/CD** | Both | 50/50% | `tests/`, `.github/workflows/` |
