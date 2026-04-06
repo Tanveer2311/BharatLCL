@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BharatLCL — India's first real-time LCL logistics marketplace for MSME exporters. Discover capacity, verify partners, track shipments.">
+  <title>BharatLCL — Digital Logistics Marketplace for Indian MSMEs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-icon">🚛</span>
+        <span class="logo-text">Bharat<span class="logo-accent">LCL</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#dashboard" class="nav-link">Dashboard</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#corridor" class="nav-link">Corridor</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="loginBtn">Log In</button>
+        <button class="btn btn-primary" id="signupBtn">Get Started</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>Now Live — Jaipur → Mundra Corridor</span>
+        </div>
+        <h1 class="hero-title">
+          Ship Smarter,<br>
+          <span class="gradient-text">Not Harder.</span>
+        </h1>
+        <p class="hero-subtitle">
+          India's first real-time LCL logistics marketplace. MSME exporters save 
+          <strong>20-35%</strong> on freight costs with transparent pricing, 
+          verified partners, and milestone-based escrow payments.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-lg" id="heroGetStarted">
+            <span>Start Shipping</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <button class="btn btn-outline btn-lg" id="heroDemo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+            <span>Watch Demo</span>
+          </button>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number" data-target="2500">0</span><span class="stat-suffix">+</span>
+            <span class="stat-label">MSMEs Onboarded</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="35">0</span><span class="stat-suffix">%</span>
+            <span class="stat-label">Cost Savings</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="680">0</span><span class="stat-suffix">km</span>
+            <span class="stat-label">Corridor Active</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="dashboard-preview">
+          <div class="preview-header">
+            <div class="preview-dots"><span></span><span></span><span></span></div>
+            <span class="preview-title">Live Capacity — Jaipur → Mundra</span>
+          </div>
+          <div class="preview-content">
+            <div class="slot-card-preview">
+              <div class="slot-header-preview">
+                <span class="slot-badge available">Available</span>
+                <span class="slot-price">₹1,800/CBM</span>
+              </div>
+              <div class="slot-info-preview">
+                <span>🚛 Gujarat Freight Movers</span>
+                <span>18 CBM free</span>
+              </div>
+              <div class="slot-bar-preview">
+                <div class="bar-fill" style="width: 40%"></div>
+              </div>
+              <div class="slot-meta-preview">
+                <span>📅 Apr 15, 2026</span>
+                <span>✅ ULIP Verified</span>
+              </div>
+            </div>
+            <div class="slot-card-preview">
+              <div class="slot-header-preview">
+                <span class="slot-badge partial">Filling Fast</span>
+                <span class="slot-price">₹2,200/CBM</span>
+              </div>
+              <div class="slot-info-preview">
+                <span>🚛 Rajasthan Express Cargo</span>
+                <span>8 CBM free</span>
+              </div>
+              <div class="slot-bar-preview">
+                <div class="bar-fill" style="width: 73%"></div>
+              </div>
+              <div class="slot-meta-preview">
+                <span>📅 Apr 12, 2026</span>
+                <span>✅ ULIP Verified</span>
+              </div>
+            </div>
+            <div class="slot-card-preview dim">
+              <div class="slot-header-preview">
+                <span class="slot-badge available">Available</span>
+                <span class="slot-price">₹1,650/CBM</span>
+              </div>
+              <div class="slot-info-preview">
+                <span>🚛 Kutch Logistics Ltd</span>
+                <span>25 CBM free</span>
+              </div>
+              <div class="slot-bar-preview">
+                <div class="bar-fill" style="width: 17%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+    </div>
+  </section>
+
+  <!-- ==================== PROBLEM SECTION ==================== -->
+  <section class="section section-dark" id="problem">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">The Problem</span>
+        <h2 class="section-title">MSMEs Are <span class="gradient-text">Bleeding Money</span> on Freight</h2>
+        <p class="section-subtitle">India's 63M+ small exporters face a broken logistics system</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-icon">💸</div>
+          <h3>20-35% Dead Freight</h3>
+          <p>Small exporters can't fill full containers. They pay for empty space they don't use — losing ₹15K-₹40K per shipment.</p>
+          <div class="problem-stat">
+            <span class="big-number">₹40K</span>
+            <span>wasted per shipment</span>
+          </div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">📞</div>
+          <h3>Manual & Opaque</h3>
+          <p>Bookings happen over phone calls and WhatsApp. No price transparency, no tracking, no accountability.</p>
+          <div class="problem-stat">
+            <span class="big-number">72hrs</span>
+            <span>average booking time</span>
+          </div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-icon">🔗</div>
+          <h3>Broker Dependency</h3>
+          <p>2-3 layers of middlemen add 15-30% markup. Exporters have zero direct access to logistics capacity.</p>
+          <div class="problem-stat">
+            <span class="big-number">30%</span>
+            <span>broker markup</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES SECTION ==================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Features</span>
+        <h2 class="section-title">Everything You Need to <span class="gradient-text">Ship with Confidence</span></h2>
+        <p class="section-subtitle">Powered by ULIP government APIs and real-time data</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card feature-large" id="feature-capacity">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">📡</div>
+          </div>
+          <h3>Real-Time Capacity Discovery</h3>
+          <p>Live dashboard showing available LCL slots across the Jaipur-Mundra corridor. Instant price quotes, space visualization, and one-click booking.</p>
+          <span class="feature-tag">FR1 — Core Feature</span>
+        </div>
+        <div class="feature-card" id="feature-ulip">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">🛡️</div>
+          </div>
+          <h3>ULIP Verification</h3>
+          <p>Every partner verified through FASTag, VAHAN & LDB government APIs. Trust scores updated in real-time.</p>
+          <span class="feature-tag">FR2</span>
+        </div>
+        <div class="feature-card" id="feature-escrow">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">🔒</div>
+          </div>
+          <h3>Milestone Escrow</h3>
+          <p>Payments released at 5 verified checkpoints. Your money is protected until delivery is confirmed.</p>
+          <span class="feature-tag">FR3</span>
+        </div>
+        <div class="feature-card" id="feature-docs">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">📄</div>
+          </div>
+          <h3>Auto Documentation</h3>
+          <p>Shipping bills, packing lists & invoices generated automatically from your booking data.</p>
+          <span class="feature-tag">FR4</span>
+        </div>
+        <div class="feature-card" id="feature-tracking">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">📍</div>
+          </div>
+          <h3>Live Tracking</h3>
+          <p>GPS-based tracking with milestone SMS alerts and real-time ETA along the corridor.</p>
+          <span class="feature-tag">FR5</span>
+        </div>
+        <div class="feature-card" id="feature-analytics">
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">📊</div>
+          </div>
+          <h3>Cost Analytics</h3>
+          <p>See exactly how much you've saved vs broker rates. Shipment history and performance metrics.</p>
+          <span class="feature-tag">FR7</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section class="section section-dark" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">Book in <span class="gradient-text">3 Simple Steps</span></h2>
+      </div>
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Discover & Compare</h3>
+            <p>Search available LCL slots on the Jaipur-Mundra corridor. Compare prices, dates, and ULIP-verified transporters in real-time.</p>
+          </div>
+          <div class="step-visual">
+            <div class="mini-search">
+              <div class="search-field">📍 Jaipur → Mundra</div>
+              <div class="search-field">📦 Textiles, 5 CBM</div>
+              <div class="search-field">📅 April 15</div>
+              <button class="mini-btn">Search</button>
+            </div>
+          </div>
+        </div>
+        <div class="step-connector"><div class="connector-line"></div></div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Book & Pay Securely</h3>
+            <p>Select your slot, enter cargo details, and pay via milestone escrow. Funds are held safely and released at each verified checkpoint.</p>
+          </div>
+          <div class="step-visual">
+            <div class="escrow-mini">
+              <div class="milestone-mini done">✓ Booked</div>
+              <div class="milestone-mini done">✓ Picked Up</div>
+              <div class="milestone-mini active">● In Transit</div>
+              <div class="milestone-mini">○ At Port</div>
+              <div class="milestone-mini">○ Delivered</div>
+            </div>
+          </div>
+        </div>
+        <div class="step-connector"><div class="connector-line"></div></div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Track & Receive</h3>
+            <p>Track your shipment in real-time on GPS. Get SMS notifications at each milestone. Download auto-generated documents anytime.</p>
+          </div>
+          <div class="step-visual">
+            <div class="tracking-mini">
+              <div class="route-line-mini">
+                <div class="route-point start">JAI</div>
+                <div class="route-progress-mini"><div class="truck-icon">🚛</div></div>
+                <div class="route-point end">MUN</div>
+              </div>
+              <div class="eta-mini">ETA: 8h 30m | 420km remaining</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIVE DASHBOARD ==================== -->
+  <section class="section" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Live Dashboard</span>
+        <h2 class="section-title">Explore <span class="gradient-text">Available Capacity</span></h2>
+        <p class="section-subtitle">Real-time LCL slots on the Jaipur-Mundra corridor</p>
+      </div>
+      
+      <!-- Search Bar -->
+      <div class="search-panel">
+        <div class="search-grid">
+          <div class="search-group">
+            <label>Origin</label>
+            <select id="searchOrigin">
+              <option>Jaipur ICD Sanganer</option>
+              <option>Jaipur ICD Kanakpura</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <label>Destination</label>
+            <select id="searchDest">
+              <option>Mundra Port (Adani)</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <label>Cargo Type</label>
+            <select id="searchCargo">
+              <option value="">All Types</option>
+              <option>Textile</option>
+              <option>Handicraft</option>
+              <option>Stone</option>
+            </select>
+          </div>
+          <div class="search-group">
+            <label>Min. CBM</label>
+            <input type="number" id="searchCBM" placeholder="e.g. 5" min="1" max="30">
+          </div>
+          <button class="btn btn-primary search-btn" id="searchBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Capacity Cards -->
+      <div class="capacity-grid" id="capacityGrid">
+        <!-- Cards will be injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ESCROW PAYMENT DEMO ==================== -->
+  <section class="section section-dark" id="escrow">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Secure Payments</span>
+        <h2 class="section-title">Milestone-Based <span class="gradient-text">Escrow System</span></h2>
+        <p class="section-subtitle">Your payment is safe. Funds release only at verified checkpoints.</p>
+      </div>
+      <div class="escrow-demo">
+        <div class="escrow-amount">
+          <span class="escrow-label">Total Escrow Amount</span>
+          <span class="escrow-value">₹10,400</span>
+          <span class="escrow-sub">For 5 CBM textile shipment</span>
+        </div>
+        <div class="milestone-track">
+          <div class="milestone" data-milestone="booked" data-amount="1040">
+            <div class="milestone-dot completed"></div>
+            <div class="milestone-info">
+              <span class="milestone-name">Booked</span>
+              <span class="milestone-pct">10%</span>
+              <span class="milestone-amt">₹1,040</span>
+              <span class="milestone-status released">✓ Released</span>
+            </div>
+          </div>
+          <div class="milestone-line completed"></div>
+          <div class="milestone" data-milestone="picked_up" data-amount="2080">
+            <div class="milestone-dot completed"></div>
+            <div class="milestone-info">
+              <span class="milestone-name">Picked Up</span>
+              <span class="milestone-pct">20%</span>
+              <span class="milestone-amt">₹2,080</span>
+              <span class="milestone-status released">✓ Released</span>
+            </div>
+          </div>
+          <div class="milestone-line active"></div>
+          <div class="milestone" data-milestone="in_transit" data-amount="2080">
+            <div class="milestone-dot active-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-name">In Transit</span>
+              <span class="milestone-pct">20%</span>
+              <span class="milestone-amt">₹2,080</span>
+              <span class="milestone-status pending">● In Progress</span>
+            </div>
+          </div>
+          <div class="milestone-line"></div>
+          <div class="milestone" data-milestone="at_port" data-amount="2600">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-name">At Port</span>
+              <span class="milestone-pct">25%</span>
+              <span class="milestone-amt">₹2,600</span>
+              <span class="milestone-status">Pending</span>
+            </div>
+          </div>
+          <div class="milestone-line"></div>
+          <div class="milestone" data-milestone="delivered" data-amount="2600">
+            <div class="milestone-dot"></div>
+            <div class="milestone-info">
+              <span class="milestone-name">Delivered</span>
+              <span class="milestone-pct">25%</span>
+              <span class="milestone-amt">₹2,600</span>
+              <span class="milestone-status">Pending</span>
+            </div>
+          </div>
+        </div>
+        <div class="escrow-summary">
+          <div class="escrow-stat">
+            <span class="escrow-stat-value">₹3,120</span>
+            <span class="escrow-stat-label">Released (30%)</span>
+          </div>
+          <div class="escrow-stat">
+            <span class="escrow-stat-value">₹7,280</span>
+            <span class="escrow-stat-label">In Escrow (70%)</span>
+          </div>
+          <div class="escrow-stat">
+            <span class="escrow-stat-value highlight">Protected</span>
+            <span class="escrow-stat-label">Payment Status</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIVE TRACKING DEMO ==================== -->
+  <section class="section" id="tracking">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Shipment Tracking</span>
+        <h2 class="section-title">Track Your Cargo <span class="gradient-text">In Real-Time</span></h2>
+      </div>
+      <div class="tracking-demo">
+        <div class="tracking-card">
+          <div class="tracking-header">
+            <div>
+              <span class="tracking-id">BL-7K2M9X</span>
+              <span class="tracking-badge active-badge">In Transit</span>
+            </div>
+            <span class="tracking-date">Booked: Apr 10, 2026</span>
+          </div>
+          <div class="tracking-route">
+            <div class="route-visual">
+              <div class="route-city origin-city">
+                <div class="city-dot active-city"></div>
+                <span class="city-name">Jaipur ICD</span>
+                <span class="city-time">Departed 6h ago</span>
+              </div>
+              <div class="route-bar">
+                <div class="route-progress" id="routeProgress" style="width: 62%">
+                  <div class="truck-marker">🚛</div>
+                </div>
+                <div class="route-waypoints">
+                  <div class="waypoint passed" style="left: 20%"><span>Ajmer</span></div>
+                  <div class="waypoint passed" style="left: 35%"><span>Pali</span></div>
+                  <div class="waypoint current" style="left: 59%"><span>Barmer</span></div>
+                  <div class="waypoint" style="left: 82%"><span>Bhuj</span></div>
+                </div>
+              </div>
+              <div class="route-city dest-city">
+                <div class="city-dot"></div>
+                <span class="city-name">Mundra Port</span>
+                <span class="city-time">ETA: 5h 20m</span>
+              </div>
+            </div>
+          </div>
+          <div class="tracking-details">
+            <div class="detail-item">
+              <span class="detail-icon">📦</span>
+              <div>
+                <span class="detail-label">Cargo</span>
+                <span class="detail-value">Block-printed cotton, 3.6 CBM</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">🚛</span>
+              <div>
+                <span class="detail-label">Transporter</span>
+                <span class="detail-value">Gujarat Freight Movers <span class="verified-badge">✅ Verified</span></span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">📍</span>
+              <div>
+                <span class="detail-label">Current Location</span>
+                <span class="detail-value">Near Barmer Toll, NH-15 | 260km remaining</span>
+              </div>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">💰</span>
+              <div>
+                <span class="detail-label">Payment</span>
+                <span class="detail-value">₹3,120 released of ₹10,400 (Milestone 3 of 5)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section class="section section-dark" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Pricing</span>
+        <h2 class="section-title">Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+        <p class="section-subtitle">Start free. Upgrade when you scale.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Aaram</h3>
+            <span class="pricing-badge">Free Forever</span>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">₹0</span>
+            <span class="price-period">/month</span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> 3 bookings per month</li>
+            <li><span class="check">✓</span> Basic capacity search</li>
+            <li><span class="check">✓</span> ULIP verification</li>
+            <li><span class="check">✓</span> Escrow payments</li>
+            <li><span class="check">✓</span> Basic analytics</li>
+            <li class="muted"><span class="x">✗</span> Priority matching</li>
+            <li class="muted"><span class="x">✗</span> Dedicated support</li>
+          </ul>
+          <div class="pricing-meta">5% platform fee per booking</div>
+          <button class="btn btn-outline btn-block">Get Started Free</button>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-popular">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Tez</h3>
+            <span class="pricing-badge premium">Premium</span>
+          </div>
+          <div class="pricing-price">
+            <span class="price-amount">₹999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="check">✓</span> <strong>Unlimited</strong> bookings</li>
+            <li><span class="check">✓</span> Advanced search & filters</li>
+            <li><span class="check">✓</span> ULIP verification</li>
+            <li><span class="check">✓</span> Escrow payments</li>
+            <li><span class="check">✓</span> <strong>Advanced</strong> analytics</li>
+            <li><span class="check">✓</span> <strong>Priority</strong> slot matching</li>
+            <li><span class="check">✓</span> <strong>Dedicated</strong> support</li>
+          </ul>
+          <div class="pricing-meta">3% platform fee per booking</div>
+          <button class="btn btn-primary btn-block">Upgrade to Tez</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CORRIDOR MAP ==================== -->
+  <section class="section" id="corridor">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Coverage</span>
+        <h2 class="section-title">Jaipur → Mundra <span class="gradient-text">Export Corridor</span></h2>
+        <p class="section-subtitle">680km connecting Rajasthan's MSME hubs to Gujarat's premier export port</p>
+      </div>
+      <div class="corridor-display">
+        <div class="corridor-map">
+          <div class="corridor-route">
+            <div class="corridor-stop origin-stop">
+              <div class="stop-dot"></div>
+              <div class="stop-info">
+                <h4>Jaipur</h4>
+                <p>Textiles · Handicrafts · Gems & Stones</p>
+                <span>ICD Sanganer & Kanakpura</span>
+              </div>
+            </div>
+            <div class="corridor-line">
+              <div class="line-label">680 km · ~14 hrs</div>
+              <div class="corridor-waypoint" style="left: 20%">Ajmer</div>
+              <div class="corridor-waypoint" style="left: 35%">Pali</div>
+              <div class="corridor-waypoint" style="left: 59%">Barmer</div>
+              <div class="corridor-waypoint" style="left: 82%">Bhuj</div>
+            </div>
+            <div class="corridor-stop dest-stop">
+              <div class="stop-dot"></div>
+              <div class="stop-info">
+                <h4>Mundra Port</h4>
+                <p>India's largest commercial port</p>
+                <span>Adani Ports & SEZ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="corridor-stats">
+          <div class="corridor-stat-card">
+            <span class="cs-icon">🧵</span>
+            <span class="cs-value">45%</span>
+            <span class="cs-label">Textiles</span>
+          </div>
+          <div class="corridor-stat-card">
+            <span class="cs-icon">🏺</span>
+            <span class="cs-value">30%</span>
+            <span class="cs-label">Handicrafts</span>
+          </div>
+          <div class="corridor-stat-card">
+            <span class="cs-icon">💎</span>
+            <span class="cs-value">25%</span>
+            <span class="cs-label">Stones</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ULIP VERIFICATION DEMO ==================== -->
+  <section class="section section-dark" id="verification">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Trust & Safety</span>
+        <h2 class="section-title">ULIP <span class="gradient-text">Government Verified</span> Partners</h2>
+        <p class="section-subtitle">Every transporter verified through India's Unified Logistics Interface Platform</p>
+      </div>
+      <div class="verification-demo">
+        <div class="verify-input-group">
+          <input type="text" id="vehicleInput" placeholder="Enter vehicle number (e.g. RJ14GA5678)" class="verify-input" maxlength="12">
+          <button class="btn btn-primary" id="verifyBtn">Verify Vehicle</button>
+        </div>
+        <div class="verify-result" id="verifyResult" style="display: none;">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== API STATUS ==================== -->
+  <section class="section" id="api-status">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">System Status</span>
+        <h2 class="section-title">API <span class="gradient-text">Health Check</span></h2>
+      </div>
+      <div class="api-grid" id="apiGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <span class="logo-icon">🚛</span>
+            <span class="logo-text">Bharat<span class="logo-accent">LCL</span></span>
+          </div>
+          <p>Empowering Indian MSMEs with transparent, technology-driven logistics solutions.</p>
+          <div class="footer-badges">
+            <span class="footer-badge">🇮🇳 Made in India</span>
+            <span class="footer-badge">🛡️ ULIP Integrated</span>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="#features">Features</a>
+          <a href="#dashboard">Capacity Search</a>
+          <a href="#pricing">Pricing</a>
+          <a href="/api/health">API Status</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="https://github.com/YOUR_USERNAME/BharatLCL" target="_blank">GitHub</a>
+          <a href="https://github.com/YOUR_USERNAME/BharatLCL/blob/main/docs/SRS.md" target="_blank">SRS Document</a>
+          <a href="https://github.com/YOUR_USERNAME/BharatLCL/blob/main/docs/SDD.md" target="_blank">SDD Document</a>
+          <a href="https://ulip.gov.in" target="_blank">ULIP Platform</a>
+        </div>
+        <div class="footer-links">
+          <h4>Tech Stack</h4>
+          <a href="#">MongoDB Atlas</a>
+          <a href="#">Express.js</a>
+          <a href="#">React</a>
+          <a href="#">Node.js</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 BharatLCL — Built with ❤️ for Indian MSMEs</p>
+        <p>Academic Project · MIT License</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== AUTH MODAL ==================== -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <h2 id="modalTitle">Welcome Back</h2>
+        <p id="modalSubtitle">Log in to access your dashboard</p>
+      </div>
+      <form class="auth-form" id="authForm">
+        <div class="form-group" id="nameGroup" style="display: none;">
+          <label for="authName">Full Name</label>
+          <input type="text" id="authName" placeholder="Rajesh Kumar">
+        </div>
+        <div class="form-group">
+          <label for="authEmail">Email</label>
+          <input type="email" id="authEmail" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label for="authPassword">Password</label>
+          <input type="password" id="authPassword" placeholder="••••••••" required>
+        </div>
+        <div class="form-group" id="roleGroup" style="display: none;">
+          <label for="authRole">I am a</label>
+          <select id="authRole">
+            <option value="exporter">MSME Exporter</option>
+            <option value="transporter">Logistics Transporter</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="authSubmit">Log In</button>
+        <p class="auth-switch">
+          <span id="authSwitchText">Don't have an account?</span>
+          <a href="#" id="authSwitchLink">Sign Up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST ==================== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
