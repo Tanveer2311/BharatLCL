@@ -130,8 +130,8 @@ BharatLCL follows a **3-tier architecture** with clear separation of concerns:
 
 | # | Name | Role | GitHub Handle |
 |---|------|------|---------------|
-| 1 | **Member 1 Name** | Full-Stack Lead (Frontend-focused) | [@member1](https://github.com/member1) |
-| 2 | **Member 2 Name** | Full-Stack Developer (Backend-focused) | [@member2](https://github.com/member2) |
+| 1 | **Tanveer Kanderia** | Full-Stack Lead (Frontend-focused) | [@member1](https://github.com/member1) |
+| 2 | **Karan Morya** | Full-Stack Developer (Backend-focused) | [@member2](https://github.com/member2) |
 
 ### Module-Wise Breakdown
 
@@ -154,8 +154,8 @@ BharatLCL follows a **3-tier architecture** with clear separation of concerns:
 
 | Member | Overall Effort | Primary Responsibilities |
 |--------|---------------|-------------------------|
-| **Member 1** | **50%** | Frontend architecture, UI/UX, escrow system, document generation, deployment |
-| **Member 2** | **50%** | Backend architecture, API design, ULIP integration, capacity engine, database |
+| **Tanveer KANDERIYA** | **50%** | Frontend architecture, UI/UX, escrow system, document generation, deployment |
+| **Karan Morya** | **50%** | Backend architecture, API design, ULIP integration, capacity engine, database |
 
 ---
 
