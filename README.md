@@ -144,11 +144,11 @@ BharatLCL follows a **3-tier architecture** with clear separation of concerns:
 | **ULIP Verification Integration** | Karan | 70% | `src/core/ulipVerification.js`, `src/server/services/ulip/` |
 | **Escrow Payment System** | Tanveer | 60% | `src/core/escrowPayment.js`, `src/server/routes/payments.js` |
 | **Automated Documentation Generator** | Tanveer | 65% | `src/core/documentGenerator.js`, `src/server/services/docs/` |
-| **Shipment Tracking** | Member 2 | 55% | `src/core/trackingService.js`, `src/server/routes/tracking.js` |
-| **Database Design & Models** | Member 2 | 60% | `src/server/models/` |
+| **Shipment Tracking** | Karan | 55% | `src/core/trackingService.js`, `src/server/routes/tracking.js` |
+| **Database Design & Models** | Karan | 60% | `src/server/models/` |
 | **Testing & CI/CD** | Both | 50/50% | `tests/`, `.github/workflows/` |
 | **Documentation (SRS, SDD)** | Both | 50/50% | `docs/` |
-| **Deployment & DevOps** | Member 1 | 55% | `vercel.json`, deployment configs |
+| **Deployment & DevOps** | Tanveer | 55% | `vercel.json`, deployment configs |
 
 ### Overall Contribution
 
