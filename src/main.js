@@ -125,7 +125,7 @@ const connectDB = async () => {
 
 const startServer = async () => {
   // Start the HTTP server first (don't block on DB)
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(`
     ╔══════════════════════════════════════════╗
     ║                                          ║
@@ -137,9 +137,26 @@ const startServer = async () => {
     `);
   });
 
+  // Handle port-in-use error gracefully
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\n❌  Port ${PORT} is already in use.`);
+      console.error(`   Run this command to free it, then try again:`);
+      console.error(`   Stop-Process -Id (Get-NetTCPConnection -LocalPort ${PORT}).OwningProcess -Force\n`);
+      process.exit(1);
+    } else {
+      throw err;
+    }
+  });
+
   // Then attempt DB connection (non-blocking)
   await connectDB();
 };
+
+// Global safety net for unhandled promise rejections
+process.on('unhandledRejection', (reason) => {
+  console.error('⚠️  Unhandled Promise Rejection:', reason);
+});
 
 startServer();
 
