@@ -15,6 +15,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
 require('dotenv').config();
 
 // Import route handlers
@@ -49,8 +52,21 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Serve static frontend files from public/ directory
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// Production Security Middlewares
+app.use(helmet());
+app.use(mongoSanitize());
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again after 15 minutes'
+});
+app.use('/api/', apiLimiter);
+
+// Serve static frontend files from client/dist
+const clientDistPath = path.join(__dirname, 'client', 'dist');
+if (require('fs').existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath, { maxAge: '1d' }));
+}
 
 
 // ============================================
@@ -82,14 +98,15 @@ app.get('/api/health', (req, res) => {
 // Serve Static Files (Production)
 // ============================================
 
-if (process.env.NODE_ENV === 'production') {
-  const clientPath = path.join(__dirname, 'client', 'dist');
-  if (require('fs').existsSync(clientPath)) {
-    app.use(express.static(clientPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(clientPath, 'index.html'));
-    });
-  }
+// SPA fallback — any route not starting with /api will serve React index.html
+const { existsSync } = require('fs');
+const distIndex = path.join(clientDistPath, 'index.html');
+if (existsSync(distIndex)) {
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(distIndex);
+    }
+  });
 }
 
 // ============================================
@@ -118,8 +135,9 @@ const connectDB = async () => {
     dbConnected = true;
     console.log('✅ MongoDB connected successfully');
   } catch (error) {
-    console.warn('⚠️  MongoDB connection failed:', error.message);
-    console.warn('   Server will continue without database — API endpoints return demo data');
+    console.error('⚠️  MongoDB connection failed:', error.message);
+    console.error('   CRITICAL: Server will completely exit if database fails in production state!');
+    process.exit(1);
   }
 };
 
