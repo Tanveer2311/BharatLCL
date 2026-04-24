@@ -62,6 +62,14 @@ const apiLimiter = rateLimit({
 });
 app.use('/api/', apiLimiter);
 
+// Serverless DB Connection Middleware
+app.use('/api', async (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    await connectDB();
+  }
+  next();
+});
+
 // Serve static frontend files from client/dist
 const clientDistPath = path.join(__dirname, 'client', 'dist');
 if (require('fs').existsSync(clientDistPath)) {
@@ -121,7 +129,10 @@ app.use(errorHandler);
 
 let dbConnected = false;
 
+let dbConnecting = false;
+
 const connectDB = async () => {
+  if (mongoose.connection.readyState === 1 || dbConnecting) return;
   const mongoURI = process.env.MONGODB_URI;
 
   if (!mongoURI) {
@@ -131,43 +142,44 @@ const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(mongoURI);
+    dbConnecting = true;
+    await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 5000 });
     dbConnected = true;
     console.log('✅ MongoDB connected successfully');
   } catch (error) {
     console.error('⚠️  MongoDB connection failed:', error.message);
-    console.error('   CRITICAL: Server will completely exit if database fails in production state!');
-    process.exit(1);
+  } finally {
+    dbConnecting = false;
   }
 };
 
 const startServer = async () => {
-  // Start the HTTP server first (don't block on DB)
-  const server = app.listen(PORT, () => {
-    console.log(`
-    ╔══════════════════════════════════════════╗
-    ║                                          ║
-    ║   🚛 BharatLCL Server                    ║
-    ║   Running on http://localhost:${PORT}        ║
-    ║   Environment: ${(process.env.NODE_ENV || 'development').padEnd(18)}║
-    ║                                          ║
-    ╚══════════════════════════════════════════╝
-    `);
-  });
+  // Start the HTTP server first if not in a serverless environment
+  if (!process.env.VERCEL) {
+    const server = app.listen(PORT, () => {
+      console.log(`
+      ╔══════════════════════════════════════════╗
+      ║                                          ║
+      ║   🚛 BharatLCL Server                    ║
+      ║   Running on http://localhost:${PORT}        ║
+      ║   Environment: ${(process.env.NODE_ENV || 'development').padEnd(18)}║
+      ║                                          ║
+      ╚══════════════════════════════════════════╝
+      `);
+    });
 
-  // Handle port-in-use error gracefully
-  server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.error(`\n❌  Port ${PORT} is already in use.`);
-      console.error(`   Run this command to free it, then try again:`);
-      console.error(`   Stop-Process -Id (Get-NetTCPConnection -LocalPort ${PORT}).OwningProcess -Force\n`);
-      process.exit(1);
-    } else {
-      throw err;
-    }
-  });
+    // Handle port-in-use error gracefully
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`\n❌  Port ${PORT} is already in use.`);
+        process.exit(1);
+      } else {
+        throw err;
+      }
+    });
+  }
 
-  // Then attempt DB connection (non-blocking)
+  // Then attempt DB connection
   await connectDB();
 };
 

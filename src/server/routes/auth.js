@@ -19,17 +19,7 @@ const { protect } = require('../middleware/auth');
 // Helper functions
 // ============================================
 
-function checkDbConnection(req, res, next) {
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(503).json({
-      success: false,
-      error: { code: 'SERVICE_UNAVAILABLE', message: 'Database connection is currently unavailable' }
-    });
-  }
-  next();
-}
-
-router.use(checkDbConnection);
+// Removed redundant checkDbConnection middleware to support Serverless cold-starts
 
 // ============================================
 // ROUTES
