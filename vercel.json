@@ -4,16 +4,26 @@
     {
       "src": "src/main.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "src/client/dist"
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "src/main.js"
+      "dest": "/src/main.js"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "src/main.js"
+      "dest": "/index.html"
     }
   ]
 }

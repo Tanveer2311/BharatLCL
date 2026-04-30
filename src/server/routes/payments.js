@@ -1,44 +1,68 @@
 /**
- * Payment Routes — Escrow Management
+ * Payment Routes — Escrow Management (Full DB Implementation)
  * @module server/routes/payments
  */
 const express = require('express');
 const router = express.Router();
-const { initializeEscrow, releaseMilestone, getMilestoneProgress, calculateRefund } = require('../../core/escrowPayment');
+const Payment = require('../models/Payment');
+const { protect, authorize } = require('../middleware/auth');
 
-router.post('/initiate', async (req, res) => {
+/**
+ * @route   GET /api/payments
+ * @desc    Get payment history for current user
+ * @access  Private
+ */
+router.get('/', protect, async (req, res) => {
   try {
-    const { shipmentId, amount } = req.body;
-    if (!shipmentId || !amount) {
-      return res.status(400).json({ success: false, error: { message: 'shipmentId and amount are required' } });
-    }
-    const escrow = initializeEscrow(amount);
-    res.status(201).json({ success: true, data: { shipmentId, ...escrow }, message: 'Escrow payment initiated' });
+    const query = {};
+    if (req.user.role === 'exporter') query.exporterId = req.user.userId;
+    else if (req.user.role === 'transporter') query.transporterId = req.user.userId;
+
+    const payments = await Payment.find(query)
+      .populate('shipmentId', 'bookingId status origin destination cargo')
+      .populate('exporterId', 'name businessName')
+      .populate('transporterId', 'name businessName')
+      .sort({ createdAt: -1 });
+
+    const totalPaid = payments.reduce((sum, p) => {
+      const released = p.milestones.filter(m => m.status === 'released').reduce((s, m) => s + m.amount, 0);
+      return sum + released;
+    }, 0);
+
+    res.json({ success: true, data: { payments, totalPaid, total: payments.length } });
   } catch (error) {
     res.status(500).json({ success: false, error: { message: error.message } });
   }
 });
 
-router.get('/:id/status', async (req, res) => {
+/**
+ * @route   GET /api/payments/:id
+ * @desc    Get single payment escrow status
+ * @access  Private
+ */
+router.get('/:id', protect, async (req, res) => {
   try {
-    res.json({ success: true, data: { paymentId: req.params.id, message: 'Connect DB to retrieve payment status' } });
+    const payment = await Payment.findById(req.params.id)
+      .populate('shipmentId', 'bookingId status')
+      .populate('exporterId', 'name')
+      .populate('transporterId', 'name businessName');
+    if (!payment) return res.status(404).json({ success: false, error: { message: 'Payment record not found' } });
+    res.json({ success: true, data: payment });
   } catch (error) {
     res.status(500).json({ success: false, error: { message: error.message } });
   }
 });
 
-router.post('/:id/release', async (req, res) => {
+/**
+ * @route   GET /api/payments/shipment/:shipmentId
+ * @desc    Get payment by shipment ID
+ * @access  Private
+ */
+router.get('/shipment/:shipmentId', protect, async (req, res) => {
   try {
-    const { milestoneName } = req.body;
-    res.json({ success: true, data: { paymentId: req.params.id, milestoneName, message: 'Milestone release endpoint ready' } });
-  } catch (error) {
-    res.status(500).json({ success: false, error: { message: error.message } });
-  }
-});
-
-router.get('/history', async (req, res) => {
-  try {
-    res.json({ success: true, data: { payments: [], total: 0 } });
+    const payment = await Payment.findOne({ shipmentId: req.params.shipmentId });
+    if (!payment) return res.status(404).json({ success: false, error: { message: 'No payment found for this shipment' } });
+    res.json({ success: true, data: payment });
   } catch (error) {
     res.status(500).json({ success: false, error: { message: error.message } });
   }

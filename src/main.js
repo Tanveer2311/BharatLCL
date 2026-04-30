@@ -15,6 +15,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
 require('dotenv').config();
 
 // Import route handlers
@@ -49,8 +52,29 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Serve static frontend files from public/ directory
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// Production Security Middlewares
+app.use(helmet());
+app.use(mongoSanitize());
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again after 15 minutes'
+});
+app.use('/api/', apiLimiter);
+
+// Serverless DB Connection Middleware
+app.use('/api', async (req, res, next) => {
+  if (mongoose.connection.readyState !== 1) {
+    await connectDB();
+  }
+  next();
+});
+
+// Serve static frontend files from client/dist
+const clientDistPath = path.join(__dirname, 'client', 'dist');
+if (require('fs').existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath, { maxAge: '1d' }));
+}
 
 
 // ============================================
@@ -82,14 +106,15 @@ app.get('/api/health', (req, res) => {
 // Serve Static Files (Production)
 // ============================================
 
-if (process.env.NODE_ENV === 'production') {
-  const clientPath = path.join(__dirname, 'client', 'dist');
-  if (require('fs').existsSync(clientPath)) {
-    app.use(express.static(clientPath));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(clientPath, 'index.html'));
-    });
-  }
+// SPA fallback — any route not starting with /api will serve React index.html
+const { existsSync } = require('fs');
+const distIndex = path.join(clientDistPath, 'index.html');
+if (existsSync(distIndex)) {
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(distIndex);
+    }
+  });
 }
 
 // ============================================
@@ -104,7 +129,10 @@ app.use(errorHandler);
 
 let dbConnected = false;
 
+let dbConnecting = false;
+
 const connectDB = async () => {
+  if (mongoose.connection.readyState === 1 || dbConnecting) return;
   const mongoURI = process.env.MONGODB_URI;
 
   if (!mongoURI) {
@@ -114,32 +142,51 @@ const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(mongoURI);
+    dbConnecting = true;
+    await mongoose.connect(mongoURI, { serverSelectionTimeoutMS: 5000 });
     dbConnected = true;
     console.log('✅ MongoDB connected successfully');
   } catch (error) {
-    console.warn('⚠️  MongoDB connection failed:', error.message);
-    console.warn('   Server will continue without database — API endpoints return demo data');
+    console.error('⚠️  MongoDB connection failed:', error.message);
+  } finally {
+    dbConnecting = false;
   }
 };
 
 const startServer = async () => {
-  // Start the HTTP server first (don't block on DB)
-  app.listen(PORT, () => {
-    console.log(`
-    ╔══════════════════════════════════════════╗
-    ║                                          ║
-    ║   🚛 BharatLCL Server                    ║
-    ║   Running on http://localhost:${PORT}        ║
-    ║   Environment: ${(process.env.NODE_ENV || 'development').padEnd(18)}║
-    ║                                          ║
-    ╚══════════════════════════════════════════╝
-    `);
-  });
+  // Start the HTTP server first if not in a serverless environment
+  if (!process.env.VERCEL) {
+    const server = app.listen(PORT, () => {
+      console.log(`
+      ╔══════════════════════════════════════════╗
+      ║                                          ║
+      ║   🚛 BharatLCL Server                    ║
+      ║   Running on http://localhost:${PORT}        ║
+      ║   Environment: ${(process.env.NODE_ENV || 'development').padEnd(18)}║
+      ║                                          ║
+      ╚══════════════════════════════════════════╝
+      `);
+    });
 
-  // Then attempt DB connection (non-blocking)
+    // Handle port-in-use error gracefully
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`\n❌  Port ${PORT} is already in use.`);
+        process.exit(1);
+      } else {
+        throw err;
+      }
+    });
+  }
+
+  // Then attempt DB connection
   await connectDB();
 };
+
+// Global safety net for unhandled promise rejections
+process.on('unhandledRejection', (reason) => {
+  console.error('⚠️  Unhandled Promise Rejection:', reason);
+});
 
 startServer();
 
