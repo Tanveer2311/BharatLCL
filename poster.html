@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatLCL — Project Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#d1d5db;display:flex;justify-content:center;padding:24px;color:#1e293b}
+.poster{width:1120px;background:#fff;border:3px solid #1e40af;box-shadow:0 4px 30px rgba(0,0,0,.12)}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#1e3a8a,#2563eb);padding:18px 30px;display:flex;align-items:center;justify-content:space-between;color:#fff}
+.header-left{display:flex;align-items:center;gap:16px}
+.logo{width:52px;height:52px;background:linear-gradient(135deg,#f97316,#eab308);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#fff}
+.header h1{font-size:1.45rem;font-weight:800;letter-spacing:-.3px}
+.header .sub{font-size:.82rem;opacity:.9;margin-top:2px}
+.header-right{text-align:right;font-size:.78rem;line-height:1.8}
+.header-right span{font-weight:400;opacity:.85}
+.header-right strong{color:#fde68a}
+
+/* BODY */
+.main{display:grid;grid-template-columns:1fr 1.3fr 1fr;border-top:3px solid #1e40af}
+.col{padding:16px 14px;display:flex;flex-direction:column;gap:14px}
+.col:nth-child(1){border-right:2px solid #cbd5e1}
+.col:nth-child(3){border-left:2px solid #cbd5e1}
+
+/* SECTION BOX */
+.sec{border:2px solid #3b82f6;border-radius:14px;padding:14px;position:relative}
+.sec.orange{border-color:#f97316}
+.sec.green{border-color:#16a34a}
+.sec.purple{border-color:#7c3aed}
+.sec-title{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:#1e40af;margin-bottom:8px;padding-bottom:6px;border-bottom:1.5px solid #dbeafe}
+.sec-title.orange{color:#ea580c;border-color:#fed7aa}
+.sec-title.green{color:#16a34a;border-color:#bbf7d0}
+.sec-title.purple{color:#7c3aed;border-color:#ddd6fe}
+.sec p{font-size:.77rem;color:#475569;line-height:1.7}
+.sec ul{list-style:none;padding:0;margin-top:6px}
+.sec ul li{font-size:.77rem;color:#475569;line-height:1.65;padding-left:14px;position:relative;margin-bottom:3px}
+.sec ul li::before{content:'•';position:absolute;left:0;color:#3b82f6;font-weight:800}
+.sec ul li strong{color:#1e293b}
+
+/* DIAGRAM STYLES */
+.diagram-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#64748b;text-align:center;margin:10px 0 6px;padding:4px 12px;background:#f1f5f9;border-radius:4px;display:inline-block}
+.diagram-wrap{display:flex;justify-content:center;margin:4px 0}
+
+/* ER DIAGRAM */
+.er{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%}
+.er-row{display:flex;gap:16px;justify-content:center;width:100%;flex-wrap:wrap}
+.er-entity{background:#dbeafe;border:2px solid #3b82f6;border-radius:8px;padding:6px 10px;min-width:90px;text-align:center}
+.er-entity .ename{font-size:.72rem;font-weight:800;color:#1e40af;margin-bottom:3px}
+.er-entity .efields{font-size:.62rem;color:#475569;line-height:1.5}
+.er-rel{background:#fef3c7;border:1.5px solid #f59e0b;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;color:#92400e;flex-shrink:0}
+.er-line{width:20px;height:2px;background:#94a3b8;align-self:center;flex-shrink:0}
+.er-vline{width:2px;height:14px;background:#94a3b8;margin:0 auto}
+.er-hgroup{display:flex;align-items:center;gap:0}
+
+/* FLOW DIAGRAM */
+.flow{display:flex;flex-direction:column;align-items:center;gap:2px}
+.flow-node{border:2px solid #3b82f6;border-radius:8px;padding:5px 12px;font-size:.68rem;font-weight:600;color:#1e3a8a;background:#eff6ff;text-align:center;max-width:180px}
+.flow-node.start{border-radius:20px;background:#dbeafe;border-color:#1e40af}
+.flow-node.decision{transform:rotate(0deg);border-color:#f59e0b;background:#fef9c3;color:#92400e;border-radius:4px;position:relative}
+.flow-node.process{border-color:#16a34a;background:#f0fdf4;color:#166534}
+.flow-node.end{border-radius:20px;background:#fef2f2;border-color:#ef4444;color:#991b1b}
+.flow-arrow{color:#3b82f6;font-size:.9rem;line-height:1}
+.flow-branch{display:flex;gap:20px;align-items:flex-start;justify-content:center}
+.flow-branch-col{display:flex;flex-direction:column;align-items:center;gap:2px}
+.flow-branch-label{font-size:.6rem;color:#64748b;font-weight:600}
+
+/* CLASS DIAGRAM */
+.class-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.class-box{border:2px solid #7c3aed;border-radius:6px;overflow:hidden;background:#fff}
+.class-box .cname{background:#7c3aed;color:#fff;font-size:.68rem;font-weight:700;padding:4px 8px;text-align:center}
+.class-box .cattrs{padding:5px 8px;border-bottom:1px solid #e2e8f0;font-size:.6rem;color:#475569;line-height:1.6;font-family:'JetBrains Mono',monospace}
+.class-box .cmethods{padding:5px 8px;font-size:.6rem;color:#7c3aed;line-height:1.6;font-family:'JetBrains Mono',monospace}
+
+/* MOCKUP */
+.mockup-row{display:flex;gap:8px;margin:6px 0}
+.mockup-img{flex:1;border-radius:8px;overflow:hidden;border:2px solid #e2e8f0}
+.mockup-img img{width:100%;display:block}
+
+/* USP */
+.usp-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.usp-item{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:8px;padding:8px}
+.usp-item .usp-icon{font-size:1rem;margin-bottom:2px}
+.usp-item .usp-t{font-size:.72rem;font-weight:700;color:#1e293b}
+.usp-item .usp-d{font-size:.64rem;color:#64748b;line-height:1.5;margin-top:2px}
+
+/* CONCLUSION */
+.future-list{margin-top:6px}
+.future-list li::before{content:'▸';color:#16a34a}
+
+/* FOOTER */
+.footer{background:#1e3a8a;color:#fff;padding:10px 30px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem}
+.tri{display:flex;gap:3px}
+.tri span{width:20px;height:3px;border-radius:2px}
+</style>
+</head>
+<body>
+<div class="poster">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">B</div>
+    <div>
+      <h1>BharatLCL: Streamlining LCL<br>Freight for Indian MSMEs</h1>
+      <div class="sub">Digital Logistics Marketplace — Jaipur–Mundra Corridor</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span>Students:</span> <strong>Tanveer Kanderiya, Karan Morya</strong><br>
+    <span>Mentor:</span> <strong>Dr. Amit Sinhal</strong><br>
+    <span>Department of CSE, JKLU</span>
+  </div>
+</div>
+
+<!-- 3-COLUMN BODY -->
+<div class="main">
+
+<!-- ====== COLUMN 1 ====== -->
+<div class="col">
+
+  <div class="sec orange">
+    <div class="sec-title orange">Problem Statement</div>
+    <p>Managing export logistics efficiently is challenging for Indian MSMEs due to fragmented freight consolidation processes. Small exporters struggle with <strong>Full Container Load (FCL)</strong> requirements, resulting in <strong>20–35% dead-freight costs</strong>. They face difficulties finding available LCL container space, verifying logistics partners, tracking shipments, and managing documentation — leading to delays, financial losses, and compromised competitiveness.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Objective</div>
+    <p>BharatLCL aims to simplify export logistics by creating a connected marketplace for exporters, transporters, and administrators.</p>
+    <ul>
+      <li><strong>Real-time capacity discovery</strong> for LCL container slots</li>
+      <li><strong>ULIP-based verification</strong> of logistics partners</li>
+      <li><strong>Milestone-based escrow</strong> payments for trust</li>
+      <li><strong>Automated documentation</strong> — shipping bills, invoices, packing lists</li>
+      <li><strong>GPS-based shipment tracking</strong> with live alerts</li>
+    </ul>
+  </div>
+
+  <div class="sec green">
+    <div class="sec-title green">Technology Stack</div>
+    <p>BharatLCL leverages the MERN stack to ensure scalability, performance, and a smooth user experience.</p>
+    <ul style="margin-top:8px">
+      <li><strong>React 18 / Vite</strong> — Frontend SPA</li>
+      <li><strong>Node.js / Express</strong> — Backend services and APIs</li>
+      <li><strong>MongoDB Atlas</strong> — Cloud database (Mongoose ODM)</li>
+      <li><strong>JWT + bcrypt</strong> — Authentication and security</li>
+      <li><strong>ULIP APIs</strong> — VAHAN, FASTag, LDB verification</li>
+      <li><strong>Razorpay</strong> — Payment gateway & escrow</li>
+      <li><strong>Vercel</strong> — Frontend deployment & hosting</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ====== COLUMN 2 (DIAGRAMS) ====== -->
+<div class="col">
+
+  <div class="sec">
+    <div class="sec-title">Analysis and Planning</div>
+    <p>The <strong>Flow Diagram</strong> illustrates user interactions, from capacity discovery to delivery confirmation. The <strong>ER Diagram</strong> represents database relationships between users, containers, shipments, and payments. The <strong>Class Diagram</strong> outlines system components and their interactions, ensuring an efficient and scalable design.</p>
+
+    <!-- ── FLOW DIAGRAM ── -->
+    <div style="text-align:center"><span class="diagram-label">Flow Diagram</span></div>
+    <svg viewBox="0 0 400 420" width="100%" style="max-width:400px;display:block;margin:0 auto">
+      <defs><marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/></marker></defs>
+      <!-- Start -->
+      <rect x="120" y="5" width="160" height="28" rx="14" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+      <text x="200" y="23" text-anchor="middle" font-size="9" font-weight="600" fill="#1e3a8a">User Login / Register</text>
+      <line x1="200" y1="33" x2="200" y2="48" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <!-- Decision -->
+      <rect x="145" y="50" width="110" height="26" rx="4" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="200" y="67" text-anchor="middle" font-size="9" font-weight="600" fill="#92400e">Role Check</text>
+      <!-- Branch lines -->
+      <line x1="165" y1="76" x2="100" y2="100" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="235" y1="76" x2="300" y2="100" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <text x="90" y="96" font-size="7" fill="#64748b" font-weight="700" text-anchor="middle">Exporter</text>
+      <text x="310" y="96" font-size="7" fill="#64748b" font-weight="700" text-anchor="middle">Transporter</text>
+      <!-- Left branch -->
+      <rect x="30" y="102" width="140" height="26" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="100" y="119" text-anchor="middle" font-size="8" font-weight="600" fill="#1e3a8a">Search LCL Slots</text>
+      <line x1="100" y1="128" x2="100" y2="143" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="30" y="145" width="140" height="26" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="100" y="162" text-anchor="middle" font-size="8" font-weight="600" fill="#1e3a8a">Book Capacity (CBM)</text>
+      <line x1="100" y1="171" x2="100" y2="186" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="30" y="188" width="140" height="26" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="100" y="205" text-anchor="middle" font-size="8" font-weight="600" fill="#166534">Escrow Payment (10%)</text>
+      <!-- Right branch -->
+      <rect x="230" y="102" width="140" height="26" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="300" y="119" text-anchor="middle" font-size="8" font-weight="600" fill="#1e3a8a">List Container</text>
+      <line x1="300" y1="128" x2="300" y2="143" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="230" y="145" width="140" height="26" rx="6" fill="#fef9c3" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="300" y="162" text-anchor="middle" font-size="8" font-weight="600" fill="#92400e">ULIP Verification</text>
+      <line x1="300" y1="171" x2="300" y2="186" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="230" y="188" width="140" height="26" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="300" y="205" text-anchor="middle" font-size="8" font-weight="600" fill="#166534">Score ≥ 70 ✓</text>
+      <!-- Merge lines -->
+      <line x1="100" y1="214" x2="100" y2="235" stroke="#3b82f6" stroke-width="1.5"/>
+      <line x1="300" y1="214" x2="300" y2="235" stroke="#3b82f6" stroke-width="1.5"/>
+      <line x1="100" y1="235" x2="300" y2="235" stroke="#3b82f6" stroke-width="1.5"/>
+      <line x1="200" y1="235" x2="200" y2="250" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <!-- Merged nodes -->
+      <rect x="80" y="252" width="240" height="26" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="200" y="269" text-anchor="middle" font-size="8" font-weight="600" fill="#1e3a8a">Pickup → In-Transit → Port Arrival</text>
+      <line x1="200" y1="278" x2="200" y2="293" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="95" y="295" width="210" height="26" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="200" y="312" text-anchor="middle" font-size="8" font-weight="600" fill="#166534">Milestone Payments Released</text>
+      <line x1="200" y1="321" x2="200" y2="336" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#ah)"/>
+      <rect x="110" y="338" width="180" height="28" rx="14" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+      <text x="200" y="356" text-anchor="middle" font-size="9" font-weight="600" fill="#991b1b">Delivery Confirmed (POD)</text>
+    </svg>
+
+    <!-- ── ER DIAGRAM ── -->
+    <div style="text-align:center;margin-top:10px"><span class="diagram-label">ER Diagram</span></div>
+    <svg viewBox="0 0 420 260" width="100%" style="max-width:420px;display:block;margin:0 auto">
+      <defs><marker id="ah2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#94a3b8"/></marker></defs>
+      <!-- Row 1: USER - CONTAINER - SHIPMENT -->
+      <rect x="10" y="10" width="100" height="55" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="60" y="28" text-anchor="middle" font-size="9" font-weight="800" fill="#1e40af">USER</text>
+      <text x="60" y="40" text-anchor="middle" font-size="6.5" fill="#475569">email, role, GST</text>
+      <text x="60" y="50" text-anchor="middle" font-size="6.5" fill="#475569">passwordHash</text>
+      <line x1="110" y1="37" x2="140" y2="37" stroke="#94a3b8" stroke-width="1.5"/>
+      <ellipse cx="155" cy="37" rx="16" ry="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="155" y="40" text-anchor="middle" font-size="7" font-weight="700" fill="#92400e">1:N</text>
+      <line x1="171" y1="37" x2="200" y2="37" stroke="#94a3b8" stroke-width="1.5"/>
+      <rect x="160" y="10" width="100" height="55" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="210" y="28" text-anchor="middle" font-size="9" font-weight="800" fill="#1e40af">CONTAINER</text>
+      <text x="210" y="40" text-anchor="middle" font-size="6.5" fill="#475569">availCBM, price</text>
+      <text x="210" y="50" text-anchor="middle" font-size="6.5" fill="#475569">origin, destination</text>
+      <line x1="260" y1="37" x2="290" y2="37" stroke="#94a3b8" stroke-width="1.5"/>
+      <ellipse cx="305" cy="37" rx="16" ry="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="305" y="40" text-anchor="middle" font-size="7" font-weight="700" fill="#92400e">1:N</text>
+      <line x1="321" y1="37" x2="350" y2="37" stroke="#94a3b8" stroke-width="1.5"/>
+      <rect x="310" y="10" width="100" height="55" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="360" y="28" text-anchor="middle" font-size="9" font-weight="800" fill="#1e40af">SHIPMENT</text>
+      <text x="360" y="40" text-anchor="middle" font-size="6.5" fill="#475569">cargo, status</text>
+      <text x="360" y="50" text-anchor="middle" font-size="6.5" fill="#475569">tracking, ETA</text>
+      <!-- Vertical connectors -->
+      <line x1="60" y1="65" x2="60" y2="85" stroke="#94a3b8" stroke-width="1.5"/>
+      <ellipse cx="60" cy="97" rx="16" ry="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="60" y="100" text-anchor="middle" font-size="7" font-weight="700" fill="#92400e">1:1</text>
+      <line x1="60" y1="109" x2="60" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="360" y1="65" x2="360" y2="85" stroke="#94a3b8" stroke-width="1.5"/>
+      <ellipse cx="360" cy="97" rx="16" ry="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="360" y="100" text-anchor="middle" font-size="7" font-weight="700" fill="#92400e">1:N</text>
+      <line x1="360" y1="109" x2="360" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+      <line x1="210" y1="65" x2="210" y2="85" stroke="#94a3b8" stroke-width="1.5"/>
+      <ellipse cx="210" cy="97" rx="16" ry="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="210" y="100" text-anchor="middle" font-size="7" font-weight="700" fill="#92400e">1:1</text>
+      <line x1="210" y1="109" x2="210" y2="130" stroke="#94a3b8" stroke-width="1.5"/>
+      <!-- Row 2: VERIFICATION - PAYMENT - DOCUMENT -->
+      <rect x="10" y="130" width="100" height="55" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="60" y="148" text-anchor="middle" font-size="8.5" font-weight="800" fill="#1e40af">VERIFICATION</text>
+      <text x="60" y="160" text-anchor="middle" font-size="6.5" fill="#475569">VAHAN, FASTag</text>
+      <text x="60" y="170" text-anchor="middle" font-size="6.5" fill="#475569">LDB, score</text>
+      <rect x="160" y="130" width="100" height="55" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="210" y="148" text-anchor="middle" font-size="9" font-weight="800" fill="#1e40af">PAYMENT</text>
+      <text x="210" y="160" text-anchor="middle" font-size="6.5" fill="#475569">milestones[]</text>
+      <text x="210" y="170" text-anchor="middle" font-size="6.5" fill="#475569">razorpayId, amount</text>
+      <rect x="310" y="130" width="100" height="55" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="360" y="148" text-anchor="middle" font-size="9" font-weight="800" fill="#1e40af">DOCUMENT</text>
+      <text x="360" y="160" text-anchor="middle" font-size="6.5" fill="#475569">type, fileUrl</text>
+      <text x="360" y="170" text-anchor="middle" font-size="6.5" fill="#475569">shipmentId</text>
+      <!-- Horizontal connectors row 2 -->
+      <line x1="110" y1="157" x2="160" y2="157" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <line x1="260" y1="157" x2="310" y2="157" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2"/>
+    </svg>
+
+    <!-- ── CLASS DIAGRAM ── -->
+    <div style="text-align:center;margin-top:10px"><span class="diagram-label">Class Diagram</span></div>
+    <svg viewBox="0 0 400 310" width="100%" style="max-width:400px;display:block;margin:0 auto">
+      <defs><marker id="ah3" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="none" stroke="#7c3aed" stroke-width="1"/></marker></defs>
+      <!-- CapacityEngine -->
+      <rect x="10" y="5" width="175" height="95" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.5"/>
+      <rect x="10" y="5" width="175" height="20" rx="4" fill="#7c3aed"/>
+      <text x="97" y="19" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">CapacityEngine</text>
+      <line x1="10" y1="45" x2="185" y2="45" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="16" y="38" font-size="6.5" fill="#475569" font-family="monospace">- containers[]: Container</text>
+      <text x="16" y="56" font-size="6.5" fill="#7c3aed" font-family="monospace">+ searchSlots(filters)</text>
+      <text x="16" y="66" font-size="6.5" fill="#7c3aed" font-family="monospace">+ rankByRelevance()</text>
+      <text x="16" y="76" font-size="6.5" fill="#7c3aed" font-family="monospace">+ deductCapacity(cbm)</text>
+      <!-- ULIPVerification -->
+      <rect x="215" y="5" width="175" height="95" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.5"/>
+      <rect x="215" y="5" width="175" height="20" rx="4" fill="#7c3aed"/>
+      <text x="302" y="19" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">ULIPVerification</text>
+      <line x1="215" y1="45" x2="390" y2="45" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="221" y="38" font-size="6.5" fill="#475569" font-family="monospace">- vehicleNo: String</text>
+      <text x="221" y="56" font-size="6.5" fill="#7c3aed" font-family="monospace">+ checkVAHAN(rc)</text>
+      <text x="221" y="66" font-size="6.5" fill="#7c3aed" font-family="monospace">+ checkFASTag(id)</text>
+      <text x="221" y="76" font-size="6.5" fill="#7c3aed" font-family="monospace">+ computeScore()</text>
+      <!-- Connection line top row -->
+      <line x1="185" y1="52" x2="215" y2="52" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="200" y="48" text-anchor="middle" font-size="6" fill="#7c3aed" font-weight="600">uses</text>
+      <!-- EscrowPayment -->
+      <rect x="10" y="120" width="175" height="95" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.5"/>
+      <rect x="10" y="120" width="175" height="20" rx="4" fill="#7c3aed"/>
+      <text x="97" y="134" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">EscrowPayment</text>
+      <line x1="10" y1="160" x2="185" y2="160" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="16" y="153" font-size="6.5" fill="#475569" font-family="monospace">- milestones[]: Milestone</text>
+      <text x="16" y="171" font-size="6.5" fill="#7c3aed" font-family="monospace">+ initEscrow(amount)</text>
+      <text x="16" y="181" font-size="6.5" fill="#7c3aed" font-family="monospace">+ releaseMilestone(n)</text>
+      <text x="16" y="191" font-size="6.5" fill="#7c3aed" font-family="monospace">+ verifyTrigger(type)</text>
+      <!-- TrackingService -->
+      <rect x="215" y="120" width="175" height="95" rx="4" fill="#fff" stroke="#7c3aed" stroke-width="1.5"/>
+      <rect x="215" y="120" width="175" height="20" rx="4" fill="#7c3aed"/>
+      <text x="302" y="134" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">TrackingService</text>
+      <line x1="215" y1="160" x2="390" y2="160" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="221" y="153" font-size="6.5" fill="#475569" font-family="monospace">- shipmentId: ObjectId</text>
+      <text x="221" y="171" font-size="6.5" fill="#7c3aed" font-family="monospace">+ getLiveLocation()</text>
+      <text x="221" y="181" font-size="6.5" fill="#7c3aed" font-family="monospace">+ calculateETA()</text>
+      <text x="221" y="191" font-size="6.5" fill="#7c3aed" font-family="monospace">+ sendAlert(milestone)</text>
+      <!-- Connection lines -->
+      <line x1="185" y1="167" x2="215" y2="167" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="200" y="163" text-anchor="middle" font-size="6" fill="#7c3aed" font-weight="600">uses</text>
+      <line x1="97" y1="100" x2="97" y2="120" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="105" y="113" font-size="6" fill="#7c3aed" font-weight="600">triggers</text>
+      <line x1="302" y1="100" x2="302" y2="120" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="315" y="113" font-size="6" fill="#7c3aed" font-weight="600">feeds</text>
+    </svg>
+  </div>
+
+</div>
+
+<!-- ====== COLUMN 3 ====== -->
+<div class="col">
+
+  <div class="sec orange">
+    <div class="sec-title orange">App Interface & Unique Selling Points</div>
+    <p>The BharatLCL interface is designed to be intuitive, accessible, and data-rich — ensuring ease of use for both exporters and transporters.</p>
+    <div class="mockup-row">
+      <div class="mockup-img"><img src="poster_assets/ui_screen1.png" alt="Landing Page with Live Slots"></div>
+      <div class="mockup-img"><img src="poster_assets/ui_screen2.png" alt="Features Section"></div>
+    </div>
+    <p style="font-size:.65rem;text-align:center;color:#94a3b8;margin-top:4px">Landing Page & Live Slots &nbsp;|&nbsp; Key Features Overview</p>
+
+    <div style="margin-top:10px;font-weight:700;font-size:.78rem;color:#1e293b">Unique Selling Points</div>
+    <div class="usp-grid">
+      <div class="usp-item"><div class="usp-icon">🔍</div><div class="usp-t">Real-Time Discovery</div><div class="usp-d">CBM-based LCL capacity search with smart ranking (Price 35%, Date 30%, Fit 20%, Trust 15%)</div></div>
+      <div class="usp-item"><div class="usp-icon">🛡️</div><div class="usp-t">Govt. ULIP Verified</div><div class="usp-d">3-API verification: VAHAN (40pts) + FASTag (30pts) + LDB (30pts). Pass ≥ 70</div></div>
+      <div class="usp-item"><div class="usp-icon">💰</div><div class="usp-t">Escrow Protection</div><div class="usp-d">5-milestone payment: 10% → 20% → 20% → 25% → 25%. GPS & FASTag verified</div></div>
+      <div class="usp-item"><div class="usp-icon">📄</div><div class="usp-t">Zero Paperwork</div><div class="usp-d">Auto-generated PDFs: Shipping Bills, Commercial Invoices, Packing Lists</div></div>
+    </div>
+  </div>
+
+  <div class="sec green">
+    <div class="sec-title green">Conclusion</div>
+    <p>BharatLCL enhances the export logistics experience by making freight consolidation more organized, accessible, and efficient. It bridges the trust gap through ULIP verification, protects finances via escrow payments, and empowers MSMEs with better control over their export journey.</p>
+    <div style="font-weight:700;font-size:.76rem;color:#1e293b;margin-top:10px">Future Scope</div>
+    <ul class="future-list">
+      <li><strong>AI-Based Rate Prediction</strong> — Dynamic pricing recommendations using historical freight data</li>
+      <li><strong>Multi-Corridor Expansion</strong> — Extending beyond Jaipur–Mundra to pan-India trade routes</li>
+      <li><strong>Blockchain Provenance</strong> — Immutable shipment records for customs compliance</li>
+      <li><strong>Mobile App</strong> — React Native app for on-the-go booking and tracking</li>
+    </ul>
+  </div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="tri">
+      <span style="background:#FF9933"></span>
+      <span style="background:#fff"></span>
+      <span style="background:#138808"></span>
+    </div>
+    <strong>BharatLCL</strong> — Empowering Indian MSMEs with Smart Logistics
+  </div>
+  <span style="opacity:.7">MERN Stack · ULIP Integration · Jaipur–Mundra Corridor · 2026</span>
+</div>
+
+</div>
+</body>
+</html>
